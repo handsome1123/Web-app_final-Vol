@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lab test1</title>
+    <link rel="stylesheet" href="../../css/style-lecture.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="/public/js/bootstrap.bundle.min.js"></script>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap"
+        rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.33/dist/sweetalert2.all.min.js"></script>
+</head>
+
+<style>
+    body {
+        background: url("https://images.unsplash.com/photo-1462826303086-329426d1aef5?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+    
+   
+    
+    #Dashboard {
+        color: #4c1b9a !important;
+        text-decoration: none;
+        cursor: not-allowed;
+    }
+    
+    @media (max-width: 767px) {
+        .navbar-brand {
+            font-size: 17px;
+            /* Decrease font size */
+        }
+    }
+    
+    /* For medium devices (e.g., tablets) */
+    @media (min-width: 768px) and (max-width: 991px) {
+        .navbar-brand {
+            font-size: 20px;
+            /* Adjust font size */
+        }
+    }
+    
+    /* For large devices (e.g., desktops) */
+    @media (min-width: 992px) {
+        .navbar-brand {
+            font-size: 28px;
+            /* Default font size */
+        }
+    }
+    
+    
+    .card-status-reserved {
+        color: black;
+    }
+    
+    /* Main Section */
+    .main {
+        position: relative;
+        padding: 20px;
+        width: 100%;
+    }
+    
+    .main-top {
+        display: flex;
+        width: 100%;
+    }
+    
+    .main-status {
+        display: flex;
+        margin-top: 20px;
+    }
+    
+    .main-status .card {
+        width: 25%;
+        margin: 10px;
+        background: linear-gradient(to right, #9DA2AE, rgb(235, 230, 230));
+        text-align: center;
+        border-radius: 20px;
+        padding: 10px;
+        box-shadow: 0 20px 35px rgba(0, 0, 0, 0.1);
+        background-size: cover;
+        
+    }
+    
+    .main-status .card h3 {
+        margin: 10px;
+        text-transform: capitalize;
+    }
+    
+    .main-status .card p {
+        font-size: 12px;
+    }
+    
+    /* Courses */
+    .main-course {
+        margin-top: 20px;
+        text-transform: capitalize;
+    }
+    
+    .course-box {
+        width: 100%;
+        height: 300px;
+        padding: 10px 10px 30px 10px;
+        margin-top: 10px;
+        background: #fff;
+        border-radius: 10px;
+        box-shadow: 0 20px 35px rgba(0, 0, 0, 0.1);
+    }
+    
+    .course-box .course {
+        display: flex;
+    }
+    
+    .box {
+        width: 33%;
+        padding: 10px;
+        margin: 10px;
+        border-radius: 10px;
+        background: rgb(235, 233, 233);
+        box-shadow: 0 20px 35px rgba(0, 0, 0, 0.1);
+    }
+    
+    .box p {
+        font-size: 12px;
+        margin-top: 5px;
+    }
+    #ti{
+        border-radius: 30px;
+        background: linear-gradient(to right, #9DA2AE, #ffff);
+    }
+    #logout{
+        font-size: 20px;
+    }
+</style>
+
+<body>
+    <nav class="navbar navbar-expand-lg   navbar-light sticky-top">
+        
+        <a class="navbar-brand mb-1" href="#">
+          <img src="https://scontent.fbkk22-6.fna.fbcdn.net/v/t1.15752-9/435364756_1095978388127075_979169200369574503_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=5f2048&_nc_eui2=AeGSnzHNcxx4XibUOxTCwEjyUiMuJqa8RepSIy4mprxF6kLsu5mxCJSVn8Nnv6I9Fk6TOS_6UfcpGkr-2CQrax2y&_nc_ohc=gNLeytMHtasAb7dPK62&_nc_ht=scontent.fbkk22-6.fna&oh=03_Q7cD1QF1wktD3glUFxXuYYpvqDSXZTnuGnGgVqI1cyl4BINsMg&oe=664CBE86" height="70px" width="70px" alt="" id="e">
+      </a>
+      <a class="navbar-brand mb-1" href="#">
+          <h1 class="rainbow-text">ROOMMEETEE</h1>
+      </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+        
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                  <a href="/lecturer/room-lists" class="nav-link" id="roomlist">ROOM LISTS</a>
+                </li>
+                <li class="nav-item">
+                  <a href="/lecturer/booking-requests" class="nav-link"  id="checkrequest" >CHECK REQUEST</a>
+                </li>
+                <li class="nav-item">
+                  <a href="/lecturer/dashboard" class="nav-link" id="Dashboard" >DASHBOARD</a>
+                </li>
+                <li class="nav-item">
+                  <a href="/lecturer/history" class="nav-link" id="History" >HISTORY</a>
+                </li>
+                <li class="nav-item ">
+                    <div>
+                        <a href="#" class="nav-link " ><button class="btn btn-danger p-2" id="logout"> LOGOUT </button></a>
+                        <span><%= user.email %></span>
+                </div>
+                </li>
+                
+              </ul>
+             
+            </div>
+          </div>
+      </nav>
+    <!-- Add more content as needed -->
+    <div class="container">
+        <section class="main">
+          <div class="main-status">
+            <div class="card">
+              <h3 class="text-success">FREE</h3>
+              <h4><%= freeSlots %>/<%= totalSlots %></h4>
+            </div>
+            <div class="card">
+              <h3 class="text-warning">
+                <a href="/lecturer/booking-requests" style="color:rgb(255, 213, 0)">Pending</a> </h3>
+              <h4><%= pendingSlots %>/<%= totalSlots %></h4>
+            </div>
+            <div class="card">
+              <h3 class="text-danger">Disable</h3>
+              <h4><%= disabledSlots %>/<%= totalSlots %></h4>
+            </div>
+            <div class="card">
+              <h3 class="text-dark">Reserve</h3>
+              <h4><%= reservedSlots %>/<%= totalSlots %></h4>
+            </div>
+          </div>
+            <div class="card " id="ti">
+              <h3 class="text-primary text-center">ToTal </h3>
+              <h4 class="text-center"><%= totalSlots %>/<%= totalSlots %></h4>
+            </div>
+          </div>
+        </section>
+    </div>
+
+    <script>
+
+        document.querySelector('#logout').onclick = function () {
+
+            Swal.fire({
+                icon:"warning",
+                title: "Do You Want To Log-Out",
+                showCancelButton: true,
+                confirmButtonText: "Log-Out",
+
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = "/logout"
+                } else if (result.isDenied) {
+                    Swal.fire("Changes are not saved", "", "info");
+                }
+            });
+        };
+
+
+
+
+    </script>
+     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+
+</html>

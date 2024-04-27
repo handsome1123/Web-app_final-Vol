@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <script src="../../js/bootstrap.bundle.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.33/dist/sweetalert2.all.min.js"></script>
+    <!-- Bootstrap JavaScript and jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+
+</head>
+
+<style>
+    #main {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 89.5vh;
+        width: 100%;
+        padding: 0 10px;
+        margin-top: 0px;
+        background: url("https://images.unsplash.com/photo-1541746972996-4e0b0f43e02a?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
+        background-position: center;
+        background-size: cover;
+        font-family: 'Arial', sans-serif;
+        font-weight: 400;
+        font-style: normal;
+    }
+
+    .lato-light {
+        font-family: "Lato", sans-serif;
+        font-weight: 400;
+        font-style: normal;
+    }
+
+    .wrapper {
+        width: 400px;
+        border-radius: 8px;
+        padding: 30px;
+        text-align: center;
+        border: 1px solid rgba(255, 255, 255, 0.5);
+        backdrop-filter: blur(15px);
+        -webkit-backdrop-filter: blur(3px);
+        font-family: 'Arial', sans-serif;
+        font-weight: 400;
+        font-style: normal;
+    }
+
+    form {
+        display: flex;
+        flex-direction: column;
+    }
+
+    h2 {
+        font-size: 2rem;
+        margin-bottom: 20px;
+        color: white;
+    }
+
+    .input-field {
+        position: relative;
+        border-bottom: 2px solid white;
+        margin: 15px 0;
+    }
+
+    .input-field:hover {
+        border-bottom: 2px solid rgb(165, 144, 144);
+        transition: 0.15s ease;
+    }
+
+    .input-field label {
+        position: absolute;
+        top: 50%;
+        left: 0%;
+        transform: translateY(-40%);
+        color: white;
+        font-size: 20px;
+        pointer-events: none;
+        transition: 0.15s ease;
+    }
+
+    .input-field input {
+        width: 100%;
+        height: 40px;
+        background: transparent;
+        border: none;
+        outline: none;
+        font-size: 20px;
+        font-family: 'Arial', sans-serif;
+        color: rgb(255, 255, 255);
+        padding-left: 10px;
+    }
+
+    .input-field input:focus~label,
+    .input-field input:valid~label {
+        font-size: 2rem;
+        top: 10px;
+        transform: translateY(-120%);
+        color: white;
+        font-size: 14px;
+        font-family: 'Arial', sans-serif;
+    }
+
+    .forget {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        color: white;
+    }
+
+    #remember {
+        color: white;
+    }
+
+    .forget label {
+        display: flex;
+        align-items: center;
+    }
+
+    .forget label p {
+        margin-left: 8px;
+    }
+
+    .wrapper a {
+        color: aliceblue;
+        text-decoration: none;
+        font-size: 18px;
+        transition: all 0.3s ease;
+    }
+
+    .wrapper a:hover {
+        text-decoration: underline;
+        opacity: 0.8;
+    }
+
+
+    #button:hover {
+        background: #90279B;
+
+        color: white;
+    }
+
+    #button {
+        background-color: rgb(68, 43, 206);
+    }
+
+
+    #Regis {
+        font-size: 17px;
+    }
+
+    .nav-item {
+
+        margin-right: 6px;
+        margin-left: 6px;
+        /* Adjust this value as needed */
+    }
+
+    .nav-item:first-child {
+        margin-left: 7px;
+        /* Adjust this value as needed */
+    }
+
+    .nav-item:last-child {
+        margin-right: 0;
+        /* Remove right margin for the last item */
+    }
+
+    .rainbow-text {
+        background-image: linear-gradient(to right, #2B27A4, #4c1b9a, #90279B);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        /* For Safari */
+        /* background-size: 400%;
+        /* Adjust based on text length */
+        /* animation: rainbow-animation 5s infinite linear;
+        /* Adjust duration as needed */
+    }
+#Regis{
+    font-size: 20px;
+}
+    /*
+    
+    @keyframes rainbow-animation {
+        0% {
+            background-position: 0% 50%;
+        }
+    
+        100% {
+            background-position: 100% 50%;
+        }
+    }
+    @media (max-width: 767px) {
+        .navbar-brand {
+          font-size: 17px; /* Decrease font size  
+        }
+      }
+      */
+    /* For medium devices (e.g., tablets) */
+    .nav-link {
+        font-size: 25px;
+        color: black !important;
+        font-weight: bolder;
+        padding: 10px 20px;
+        /* Adjust padding values as needed */
+        margin: 0 20px;
+
+        font-family: 'Arial', sans-serif;
+        font-weight: 400;
+        font-style: normal;
+
+    }
+    .nav-link:hover {
+color: #4c1b9a !important;;
+
+}
+    nav {
+        background: linear-gradient(to right, #ffff, #9DA2AE);
+    }
+
+    #e {
+        border-radius: 50px;
+    }
+    #logo{
+        padding-left: 7vh;
+    }
+</style>
+
+<body>
+    <!-----------------------  Menu bar --------------------------->
+    <nav class="navbar navbar-expand-lg navbar-light sticky-top">
+
+        <a class="navbar-brand mb-1" id="logo" href="#">
+            <img src="https://scontent.fbkk22-6.fna.fbcdn.net/v/t1.15752-9/435364756_1095978388127075_979169200369574503_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=5f2048&_nc_eui2=AeGSnzHNcxx4XibUOxTCwEjyUiMuJqa8RepSIy4mprxF6kLsu5mxCJSVn8Nnv6I9Fk6TOS_6UfcpGkr-2CQrax2y&_nc_ohc=gNLeytMHtasAb7dPK62&_nc_ht=scontent.fbkk22-6.fna&oh=03_Q7cD1QF1wktD3glUFxXuYYpvqDSXZTnuGnGgVqI1cyl4BINsMg&oe=664CBE86" height="70px" width="70px" alt="" id="e">
+              
+        </a>
+        <a class="navbar-brand mb-1" href="#">
+            <h1 class="rainbow-text">ROOMMEETEE</h1>
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a href="#" class="nav-link" id="home">HOME</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link" id="roomlist">ROOM LISTS</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link" id="checkrequest">CHECK REQUEST</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link" id="History">HISTORY</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link"><button class="btn btn-danger btn-md " id="Regis">
+                            Register </button></a>
+                </li>
+            </ul>
+
+        </div>
+        </div>
+    </nav>
+
+
+    <!--------------main -------------->
+    <div id="main">
+        <div class="wrapper mt-0">
+            <form action="/signin" method="post">
+                <% if(message.length> 0) { %>
+                    <div class="alert alert-danger">
+                        <%= message %>
+                    </div>
+                    <% } %>
+                        <h2>Login</h2>
+                        <!------------ Enter Gmail ------------ ---->
+                        <div class="input-field" id="form-input">
+                            <input type="text" id="Gmail" name="email" required>
+                            <label>Enter Your E-Mail</label>
+                        </div>
+                        <!------------ Enter Password ---------------->
+                        <div class="input-field">
+                            <input type="password" id="Password" name="password" required>
+                            <label>Enter your password</label>
+                        </div>
+                        <div class="forget">
+                            <div class="check-input">
+                                <!------------Remember  me-------------------->
+                                <label for="remember">
+                                    <input type="checkbox" id="remember">
+                                    <p>Remember me</p>
+                                </label>
+                            </div>
+                        </div>
+                        <!-----------------  Login button  ------------------------>
+                        <button type="submit" class="btn text-white" id="button">Login</button>
+                        <div class="mt-3 text-white" id="New_account">
+                            <!--------------- go to  Register page ----------------->
+                            <a href="/signup">
+                                <p>Create New Account</p>
+                            </a>
+                        </div>
+            </form>
+        </div>
+    </div>
+    <script>
+
+document.querySelector('#Regis').onclick = function () {
+            
+                    window.location.href = "/signup"                   //go login page
+              
+        }
+
+        document.querySelector('#home').onclick = function () {
+            Swal.fire({                                                   // sweealert
+                icon: "error",                                            // show error icon
+                title: "You must login First",                            // show title
+                showCancelButton: true,                                   // show cancel button
+                confirmButtonText: "Go to Login",                         // show confirm button
+
+            }).then((result) => {                                        // if press confirm button
+                if (result.isConfirmed) {
+                    window.location.href = "/login"                   //go login page
+                } else if (result.isDenied) {                              // if press cancel button
+                    Swal.fire("Changes are not saved", "", "info");        // nothing change
+                }
+            });
+        }
+
+document.querySelector('#roomlist').onclick = function () {
+            Swal.fire({                                                   // sweealert
+                icon: "error",                                            // show error icon
+                title: "You must login First",                            // show title
+                showCancelButton: true,                                   // show cancel button
+                confirmButtonText: "Go to Login",                         // show confirm button
+
+            }).then((result) => {                                        // if press confirm button
+                if (result.isConfirmed) {
+                    window.location.href = "/login"                   //go login page
+                } else if (result.isDenied) {                              // if press cancel button
+                    Swal.fire("Changes are not saved", "", "info");        // nothing change
+                }
+            });
+        }
+document.querySelector('#checkrequest').onclick = function () {
+            Swal.fire({                                                   // sweealert
+                icon: "error",                                            // show error icon
+                title: "You must login First",                            // show title
+                showCancelButton: true,                                   // show cancel button
+                confirmButtonText: "Go to Login",                         // show confirm button
+
+            }).then((result) => {                                        // if press confirm button
+                if (result.isConfirmed) {
+                    window.location.href = "/login"                   //go login page
+                } else if (result.isDenied) {                              // if press cancel button
+                    Swal.fire("Changes are not saved", "", "info");        // nothing change
+                }
+            });
+        }
+document.querySelector('#History').onclick = function () {
+            Swal.fire({                                                   // sweealert
+                icon: "error",                                            // show error icon
+                title: "You must login First",                            // show title
+                showCancelButton: true,                                   // show cancel button
+                confirmButtonText: "Go to Login",                         // show confirm button
+
+            }).then((result) => {                                        // if press confirm button
+                if (result.isConfirmed) {
+                    window.location.href = "/login"                   //go login page
+                } else if (result.isDenied) {                              // if press cancel button
+                    Swal.fire("Changes are not saved", "", "info");        // nothing change
+                }
+            });
+        }
+
+
+
+
+    </script>
+</body>
+
+</html>

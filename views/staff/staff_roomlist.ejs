@@ -1,0 +1,344 @@
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Staff Room Lists</title>
+    <link rel="stylesheet" href="../../css/staff-style.css">
+    <link rel="stylesheet" href="../../css/bootstrap.min.css">
+    <script src="../../js/jquery-3.2.1.slim.min.js"></script>
+    <script src="../../js/popper.min.js"></script>
+    <script src="../../js/bootstrap.min.js"></script>
+    <script src="../../js/sweetalert2.all.min.js"></script>
+</head>
+
+<style>
+    .lato-light {
+        font-family: 'Arial', sans-serif;
+        font-weight: 400;
+        font-style: normal;
+    }
+    
+    .navbar {
+        padding-bottom: 0;
+    }
+    
+    ul {
+        display: flex;
+        gap: 4rem;
+        list-style: none;
+        padding-bottom: 0%;
+    }
+    
+    .navbar {
+        padding-bottom: 0px;
+    }
+    
+    .nav {
+        justify-content: center;
+    }
+    
+    .navbar-brand {
+        text-decoration: none;
+        color: black;
+        
+        position: relative;
+        transition: all 0.3s ease;
+        padding-bottom: 0%;
+    
+    }
+    
+    .navbar-brand:hover {
+        color: #4c1b9a;
+        padding-bottom: 0%;
+    }
+    
+    .navbar-brand::before {
+        content: "";
+        position: absolute;
+        width: 100%;
+        height: 2px;
+        background: #4c1b9a;
+        border-radius: 5px;
+        transform: scaleX(0);
+        transition: all 0.6s ease;
+        bottom: 0;
+        left: 0;
+        padding-bottom: 0px;
+    }
+    
+    .navbar-brand:hover::before {
+        transform: scaleX(1);
+        padding-bottom: 0%;
+    }
+    
+  
+    
+    .navbar {
+    
+        margin-bottom: 0px;
+        padding-bottom: 0%;
+        justify-content: center;
+    }
+    
+    .s {
+        text-decoration: none;
+    }
+    
+    .rainbow-text {
+        background-image: linear-gradient(to right, #2B27A4,#4c1b9a,#90279B);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        /* For Safari */
+       /* background-size: 400%;
+        /* Adjust based on text length */
+       /* animation: rainbow-animation 5s infinite linear;
+        /* Adjust duration as needed */
+    }
+    
+    #Editreservation {
+        color: #4c1b9a;
+        text-decoration: underline;
+        cursor: not-allowed;
+    }
+    @media (max-width: 767px) {
+        .navbar-brand {
+          font-size: 17px; /* Decrease font size */
+        }
+      }
+      
+      /* For medium devices (e.g., tablets) */
+      @media (min-width: 768px) and (max-width: 991px) {
+        .navbar-brand {
+          font-size: 20px; /* Adjust font size */
+        }
+      }
+      
+      /* For large devices (e.g., desktops) */
+      @media (min-width: 992px) {
+        .navbar-brand {
+          font-size: 28px; /* Default font size */
+        }
+      }
+      nav{
+        background: linear-gradient(to right, #ffffff,#9DA2AE);
+      }
+      td img {
+        display: block;
+        margin: 0 auto;
+    }
+</style>
+
+<body>
+    <div class="header">
+        
+        <h2  class="rainbow-text">ROOMMEETEE</h2>
+    </div>
+
+    <!-- Button to trigger the modal -->
+      <div class="col  d-flex justify-content-end align-items-start m-3 sticky-top" >
+        <button class="btn btn-primary mx-4" type="button" data-bs-toggle="modal" data-bs-target="#modalAdd" >
+          Add Room
+        </button>
+        <form id="reset-room-status-form" action="/reset-room-status" method="POST">
+            <button type="submit" class="btn btn-warning">Reset Statuses </button>
+        </form>
+      </div>
+
+    <div class="sidebar">
+        <div class="text-center mt-4">
+            <p class="text-success">[<%= user.email %>]<p></p>
+        </div>
+        <a href="/staff/dashboard">Dashboard</a>
+        <a  href="/staff/room-lists" id="Roomlist">Room List</a>
+        <a href="/staff/all-lecturers-history">History</a>
+        <a href="#" id="Logout">Logout</a>
+    </div>
+
+    <div class="content">
+        <table class="table table-striped table-bordered  w-100 " id="Table">
+            <thead class="table-dark" >
+                <tr>
+                    <th class="text-center bg-dark text-white fs-4" id="">Picture</th>
+                    <th class="text-start bg-dark text-white fs-4" id="">Room Name</th>
+                    <th class="text-center bg-dark text-white fs-4" id="">Time Slot</th>
+                    <th class="text-start bg-dark text-white fs-4" id="">Status</th>
+                    <th class="text-start bg-dark text-white fs-4" id="">Action</th>
+                    <th class="text-start bg-dark text-white fs-4">Edit</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% rooms.forEach(room => { %>
+                <tr>
+                    <td class="text-dark mx-4 text-center" id="Table1">
+                        <img src="<%= room.image_path %>" alt="" width="350px" height="200px">
+                    </td>
+                    <td class="text-white mx-4 text-center" id="Table2">
+                        <div class="text-start text-dark"> 
+                            <h4><%= room.room_name %></h4>
+                        </div>
+                    </td>
+             
+                    <td class="border-0" id="Table3">
+                        <div class="mt-2">
+                            <% room.timeSlots.forEach(slot => { %>
+                            <p class=" border-2 px-3 py-2"><%= slot.start_time %> - <%= slot.end_time %></p>
+                            <% }); %>
+                        </div>
+                    </td>
+                    <td class="border-0">
+                            <% room.timeSlots.forEach(slot => { %>
+                            <div class="mt-2">
+                                <% if (slot.status === "free") { %> 
+                                    <button class="btn btn-success btn-md px-5 py-2
+                                    text-center"><%= slot.status %> </button>
+                                <% } else if (slot.status === 'pending') { %>
+                                    <button class="btn btn-secondary btn-md px-3 py-2 text-center"><%= slot.status %></button>
+                                <% } else if (slot.status === 'reserved') { %>
+                                    <button class="btn btn-warning btn-md px-5 py-2  text-center"><%= slot.status %></button>
+                                <% } else if (slot.status === 'disabled') { %>
+                                    <button class="btn btn-danger btn-md px-4 py-2 text-center" ><%= slot.status %></button>
+                                <% } %>
+                            </div>
+                            <% }); %>   
+                    </td>
+
+                    <td class="border-0">
+                        <% room.timeSlots.forEach(slot => { %>
+                        <div class="mt-2">
+                            <% if (slot.status === "free") { %> 
+                                <button class="btn btn-danger btn-md px-3 py-2 text-center">
+                                    <a href="/staff/disabled-slots/?roomId=<%= room.room_id %>&userId=<%= userId %>&slotId=<%= slot.slot_id %>" class="text-white px-3">
+                                        Disable
+                                      </a>                                      
+                                  </button>
+                            <% } else if(slot.status === 'disabled') { %>
+                                <button class="btn btn-primary btn-md px-3 py-2 text-center">
+                                    <a href="/staff/enabled-slots/?roomId=<%= room.room_id %>&userId=<%= userId %>&slotId=<%= slot.slot_id %>" class="text-white px-3">
+                                         Enable
+                                    </a>
+                                  </button>
+                                  <% } else if(slot.status === 'pending') { %>
+                                    <button class="btn btn-warning btn-md px-3 py-2 text-center">
+                                        Pending
+                                    </button>
+                                    <% } else if(slot.status === 'reserved') { %>
+                                    <button class="btn btn-info btn-md px-3 py-2 text-center">
+                                        Reserved
+                                    </button>
+                                    <% } %>
+                        </div>
+                        <% }); %>   
+                    </td>
+
+                    <td class="border-0">
+                        <div class="mt-2">
+                            <a href="/staff/edit-room/<%= room.room_id %>" class="btn btn-warning">Edit</a>                    
+                        </div>
+                    </td>
+                </tr>
+                <% }); %>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Add Modal -->
+    <div class="modal fade" id="modalAdd" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false" role="dialog"
+        aria-labelledby="modalTitleId" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-l" role="document">
+            <div class="modal-content table1 pb-0">
+                <div class="modal-header rounded-pill m-4 mb-0">
+                    <h5 class="modal-title textc1" id="modalTitleId">
+                        Add New Room
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <!-- modal-body -->
+                    <form action="/staff/add-room" method="post" enctype="multipart/form-data" id="formAdd" class="container" >
+                        <label for="model">Room Name</label>
+                        <input class="form-control rounded-pill" type="text" name="roomName" id="newmodel"
+                            placeholder="Model" required> <br>
+
+                        <label for="imagePath">Choose images</label>
+                        <input type="file" id="image" name="image" accept="image/" required> <br><br>
+
+                        <h5>Time Slots:</h5>
+                        <div>
+                            <label>Time Slot 1 (08:00:00 - 10:00:00):</label>
+                            <input type="hidden" name="slotData[0][startTime]" value="08:00:00">
+                            <input type="hidden" name="slotData[0][endTime]" value="10:00:00">
+                            <select name="slotData[0][status]" required>
+                                <option value="free">free</option>
+                                <option value="disabled">disabled</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label>Time Slot 2 (10:00:00 - 12:00:00):</label>
+                            <input type="hidden" name="slotData[1][startTime]" value="10:00:00">
+                            <input type="hidden" name="slotData[1][endTime]" value="12:00:00">
+                            <select name="slotData[1][status]" required>
+                                <option value="free">free</option>
+                                <option value="disabled">disabled</option>
+                            </select>
+                        </div>
+                
+                        <div>
+                            <label>Time Slot 3 (13:00:00 - 15:00:00):</label>
+                            <input type="hidden" name="slotData[2][startTime]" value="13:00:00">
+                            <input type="hidden" name="slotData[2][endTime]" value="15:00:00">
+                            <select name="slotData[2][status]" required>
+                                <option value="free">free</option>
+                                <option value="disabled">disabled</option>
+                            </select>
+                        </div>
+                
+                        <div>
+                            <label>Time Slot 4 (15:00:00 - 17:00:00):</label>
+                            <input type="hidden" name="slotData[3][startTime]" value="15:00:00">
+                            <input type="hidden" name="slotData[3][endTime]" value="17:00:00">
+                            <select name="slotData[3][status]" required>
+                                <option value="free">free</option>
+                                <option value="disabled">disabled</option>
+                            </select>
+                        </div>
+
+                        <div class="text-end mt-2 me-2">
+                            <button type="button" class="btn btn-secondary rounded-pill" data-bs-dismiss="modal">
+                                Close
+                            </button>
+                            <button type="submit" class="btn btn-primary rounded-pill" >Save</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+</body>
+
+<script>
+      document.querySelector('#Logout').onclick = function () {
+            Swal.fire({
+                  icon:"warning",
+                title: "Do You Want To Log-Out",
+                showCancelButton: true,
+                confirmButtonText: "Log-Out",
+
+            }).then((result) => {
+                /* Read more about isConfirmed, isDenied below */
+                if (result.isConfirmed) {
+                    window.location.href = "/logout"
+                } else if (result.isDenied) {
+                    Swal.fire("Changes are not saved", "", "info");
+                }
+            });
+        };
+
+</script>
+</html>
+

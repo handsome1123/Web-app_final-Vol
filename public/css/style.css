@@ -1,0 +1,166 @@
+/* Navbar styling */
+.navbar {
+  background: linear-gradient(to right, #ffff,#9DA2AE);
+}
+
+.navbar-brand h1 {
+ 
+    font-family: "Open Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: light;
+    font-style: normal;
+    font-variation-settings:
+      "wdth" 100;
+  }
+
+
+.nav-link {
+  font-size: 22px;
+  color: #050505    !important;
+  
+  padding: 10px 20px; /* Adjust padding values as needed */
+  margin: 0 10px;
+  
+  font-family: 'Arial', sans-serif;
+  font-weight: 400;
+  font-style: normal;
+
+        
+}
+.nav-link {
+  text-decoration: none;
+  color: black  /*!important;*/;
+  
+  position: relative;
+  transition: all 0.3s ease;
+  padding-bottom: 0%;
+
+}
+
+.nav-item a.nav-link:hover {
+  text-decoration: none; /* Remove underline on hover for links */
+}
+
+.nav-link::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  background: #4c1b9a;
+  border-radius: 5px;
+  transform: scaleX(0);
+  transition: all 0.6s ease;
+  bottom: 0;
+  left: 0;
+  padding-bottom: 0px;
+}
+
+.nav-link:hover::before {
+  transform: scaleX(1);
+  padding-bottom: 0%;
+}
+
+
+
+.nav-item {
+  
+  margin-right: 15px; /* Adjust this value as needed */
+}
+
+.nav-item:first-child {
+  margin-left: 0px; /* Adjust this value as needed */
+}
+
+.nav-item:last-child {
+  margin-right: 0; /* Remove right margin for the last item */
+}
+
+.navbar-toggler-icon {
+  background-color: #ffffff; /* Color for the navbar toggler icon */
+}
+
+.navbar-nav .nav-link {
+  color: #050505;
+}
+.nav-item{
+  color: #4c1b9a;
+}
+.navbar-nav .nav-link:hover {
+  color: #4c1b9a   !important; /* Hover text color for navbar links */
+}
+
+.navbar-text {
+  color: #ffffff; /* Text color for additional navbar text */
+}
+
+.navbar-text .mr-3 {
+  color: #ffffff; /* Text color for user email */
+}
+
+@keyframes rainbow-animation {
+  0% {
+      background-position: 0% 50%;
+  }
+
+  100% {
+      background-position: 100% 50%;
+  }
+}
+
+.rainbow-text {
+      
+  background-image: linear-gradient(to right, #2B27A4,#4c1b9a,#90279B);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  /* For Safari */
+  
+  /* Adjust duration as needed */
+}
+
+
+
+/* Adjustments for the search bar */
+.search-bar {
+  margin-top: 20px;
+}
+
+/* Styling for the input field */
+.search-bar input[type="text"] {
+  width: 70%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+/* Styling for the search button */
+.search-bar button {
+  padding: 10px 20px;
+  border: 1px solid #007bff;
+  border-radius: 5px;
+  background-color: #007bff;
+  color: #fff;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+/* Hover effect for the search button */
+.search-bar button:hover {
+  background-color: #0056b3;
+  border-color: #0056b3;
+}
+
+#table,
+#table th,
+#table td {
+  font-family: "Open Sans", sans-serif;
+  font-weight: 400; /* Adjust the font weight as needed */
+}
+
+#e{
+  border-radius: 50px;
+}
+
+#Logout{
+  font-size: 20px;
+}

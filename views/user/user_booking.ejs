@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Booking</title>
+    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+
+<style>
+       #e{
+        border-radius: 50px;
+      }
+    #button:hover {
+        background: rgb(184, 74, 74);
+    }
+   
+ 
+    #Logout {
+      
+        padding-left: 13px;
+        font-size: 20px;
+        color: white;
+        text-align: end;
+    }
+    
+    
+    
+    #main {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 89.5vh;
+        width: 100%;
+        padding: 0 10px;
+        background: url("https://mir-s3-cdn-cf.behance.net/project_modules/fs/832c3177888323.5c94a80a34d3a.jpg?fbclid=IwAR241rjdvw8jahX017nlfpyhzIE443pntp4UFM8ervlbkFh8RDQgK-1I-nk_aem_Aa2DC5j-eYPNTznuGbwr4E1T9tr6tJTvZqsNIn9F3q91fB8S37Lzvo34PBJcFkmo47IaVXoWeluwVy00QYoTzhxh");
+        background-position: center;
+        background-size: cover;
+        color: white;
+    }
+    
+    .lato-light {
+        font-family: "Lato", sans-serif;
+        font-weight: 400;
+        font-style: normal;
+    }
+    
+    .wrapper {
+        width: 400px;
+        margin-top: 10px;
+        border-radius: 8px;
+        padding: 7px 30px;
+        text-align: center;
+        border: 1px solid rgba(255, 255, 255, 0.5);
+        height:fit-content;
+        backdrop-filter: blur(15px);
+        -webkit-backdrop-filter: blur(3px);
+    }
+    
+    
+    
+   
+</style>
+
+<body>
+    <!----------------Menu Bar---------------------->
+    <nav class="navbar navbar-expand-lg   navbar-light ">
+        
+        <a class="navbar-brand mb-1" href="#">
+          <img src="https://scontent.fbkk22-6.fna.fbcdn.net/v/t1.15752-9/435364756_1095978388127075_979169200369574503_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=5f2048&_nc_eui2=AeGSnzHNcxx4XibUOxTCwEjyUiMuJqa8RepSIy4mprxF6kLsu5mxCJSVn8Nnv6I9Fk6TOS_6UfcpGkr-2CQrax2y&_nc_ohc=gNLeytMHtasAb7dPK62&_nc_ht=scontent.fbkk22-6.fna&oh=03_Q7cD1QF1wktD3glUFxXuYYpvqDSXZTnuGnGgVqI1cyl4BINsMg&oe=664CBE86" height="70px" width="70px" alt="" id="e">
+      </a>
+      <a class="navbar-brand mb-1" href="#">
+          <h1 class="rainbow-text">ROOMMEETEE</h1>
+      </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+        
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                  <a href="/index" class="nav-link" id="roomlist">ROOM LISTS</a>
+                </li>
+                <li class="nav-item">
+                  <a href="/user/checking-requests" class="nav-link">CHECK REQUEST</a>
+                </li>
+                <li class="nav-item">
+                  <a href="/user/history" class="nav-link">HISTORY</a>
+                </li>
+                <li class="nav-item ">
+                  <a href="#" class="nav-link " id="logout"><button class="btn btn-danger"> LOGOUT </button></a>
+                </li>
+              </ul>
+              <span class="navbar-text">
+                <span class="mr-3"><%= user.email %></span>
+              </span>
+            </div>
+          </div>
+      </nav>
+  
+    <div class="">
+        <!-------Reservation Form---------------->
+        <div id="main">
+            <div class="wrapper">
+                <h1>Reservation Form</h1>
+                <% if(message.length > 0) { %>
+                    <div class="alert alert-primary">
+                        <%= message %>
+                    </div>
+                <% } %>
+                <form action="/booking" method="post">
+                <input type="hidden" name="roomId" value="<%= roomId %>">
+                <input type="hidden" name="slotId" value="<%= slotId %>">
+                <input type="hidden" name="userId" value="<%= userId %>">
+                <img src="/img/<%= roomImage %>"  alt="" id="roomImage" width="100%"  height="200px" > <!-- Image tag to display room picture -->
+                <p><strong>Room Name:</strong> <%= roomName %></p>
+                <p><strong>Date:</strong> <span id="currentDate"></span></p>
+                <p><strong>Time:</strong> <span id="currentTime"></span></p>
+                <p><strong>Time Slot:</strong>  <%= startTime %> - <%= endTime %> </p>
+                <p><strong>Objective:</strong></p>
+                <textarea name="objective" id="objectiveInput" class="form-control" cols="40" rows="3" required></textarea>
+                <div>
+                    <button type="submit" class="btn btn-primary mt-3" id="submitReservation">Submit</button>
+                    <button type="submit" class="btn btn-danger mt-3 mx-4"> <a href="/index" class="text-white">Cancel</a> </button>
+                </div>
+            </form>
+            </div>
+        </div>
+    </div>
+    </div>
+    </div>
+
+    <script>
+
+        // Function to format the date with leadin zeros if needed
+        function formatTime(time) {
+            return time < 10 ? "0" + time : time;
+        }
+
+        // Update the date and time every second
+        setInterval(function() {
+            // Get the current date and time
+            const now = new Date();
+
+            // Format date (MM/DD/YYYY)
+            const formattedDate = (now.getMonth() + 1) + '/' + now.getDate() + '/' + now.getFullYear();
+
+            // Format time (HH:MM:SS)
+            const formattedTime = formatTime(now.getHours()) + ':' + formatTime(now.getMinutes()) + ':' + formatTime(now.getSeconds());
+
+            // Update the HTML content with the current data and time
+            document.getElementById('currentDate').textContent = formattedDate;
+            document.getElementById('currentTime').textContent = formattedTime;
+        }, 1000); //Update every second
+
+        //----------------------set text of form automatic-------------------------------
+        window.onload = function () {
+
+            const selectedRoom = JSON.parse(localStorage.getItem("selectedRoom"));
+            const date = localStorage.getItem("date");
+            const timeSlot = localStorage.getItem("timeSlot");
+
+            document.getElementById('roomName').textContent = selectedRoom.name;
+            document.getElementById('roomSize').textContent = selectedRoom.size;
+            document.getElementById('date').textContent = date;
+            document.getElementById('timeSlot').textContent = timeSlot;
+
+
+            document.getElementById('roomImage').src = selectedRoom.picture;
+        };
+        
+        //-----------------------------when click Home menu----------------------------------
+        document.querySelector('#Home').onclick = function () {
+            Swal.fire({
+                title: "Do you  Sure for Cancel  Booking?",
+                showDenyButton: true,
+                confirmButtonText: "Yes",
+                denyButtonText: `No`
+            }).then((result) => {
+                if (result.isConfirmed) {
+
+                    Swal.fire({
+                        icon: "success",
+                        title: "Cancel Complete",
+                        showCancelButton: false,
+                        confirmButtonText: "Go Home",
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            window.location.href = "Home2-student.html";
+                        }
+                    });
+                }
+            });
+          
+        };
+         
+        //--------------------------- when click roomlist---------------------------------------
+        document.querySelector('#Roomlist').onclick = function () {
+            Swal.fire({
+                title: "Do you  Sure for Cancel  Booking?",
+                showDenyButton: true,
+                confirmButtonText: "Yes",
+                denyButtonText: `No`
+            }).then((result) => {
+                if (result.isConfirmed) {
+
+                    Swal.fire({
+                        icon: "success",
+                        title: "Cancel Complete",
+                        showCancelButton: false,
+                        confirmButtonText: "Go Booking Again",
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            window.location.href = "Roomlist-student.html";
+                        }
+                    });
+                }
+            });
+        }
+        
+        //--------------------------- when click Check request Menu---------------------------------------
+        document.querySelector('#CheckmyRequest').onclick = function () {
+            Swal.fire({
+                title: "Your Form is not Save",
+                showCancelButton: true,
+                confirmButtonText: "Ok",
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = "Checkrequest-student.html";
+                } else if (result.isDenied) {
+                    Swal.fire("Changes are not saved", "", "info");
+                }
+            });
+        }
+         
+        //--------------------------- when click History Menu---------------------------------------
+        document.querySelector('#History').onclick = function () {
+
+            window.location.href = "History-student.html"
+        } 
+    
+    </script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+
+</html>
